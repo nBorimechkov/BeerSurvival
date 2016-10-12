@@ -2,8 +2,8 @@
  * Created by Rostislav Kolev on 12-Oct-16.
  */
     //constants
-let homerGoingRight = 'res/homer2.png';    // two sprites for walking
-let homerGoingLeft = 'res/homer.png';
+let homerGoingRight = 'homerRight';    // two sprites for walking
+let homerGoingLeft = 'homerLeft';
 
 let homerSpeedX = 15;
 let homerSpeedY = 0;

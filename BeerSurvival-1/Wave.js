@@ -41,6 +41,10 @@ var Point = function(config){
     this.setTarget();
 };
 
+let colorOfOcean;
+let beerColor = '#FEBD01';
+let redColor = '#ed0707';
+
 Point.prototype.setTarget = function(){
     this.initialX = this.x;
     this.initialY = this.y;
@@ -112,12 +116,22 @@ var renderShape = function(){
     ctx.stroke();
 };
 
-var loop = function(){
+var loop = function () {
+    colorOfOcean = beerColor;
+    if (opt.level >= 0.08) {
+        colorOfOcean = redColor;
+    }
+
     updatePoints();
     renderShape();
 };
 
 function increaseWaves() {
+    if(opt.level >= 0.09)
+    {
+        return;
+    }
+
     let oldLevel = opt.level;
     opt.range.x += 2.5;
     opt.range.y += 5;
@@ -129,6 +143,7 @@ function increaseWaves() {
         let i = opt.count + 2;
         let spacing = (cw + (opt.range.x * 2)) / (opt.count - 1);
         while (i--) {
+            console.log('level: ' + opt.level)
             points.push(new Point({
                 x: (spacing * (i - 1)) - opt.range.x,
                 y: ch - (ch * opt.level)
@@ -141,6 +156,11 @@ function increaseWaves() {
 }
 
 function reduceWaves() {
+    if (opt.level == 0)
+    {
+        return; // няма смисъл да става отрицателно
+    }
+
     opt.range.x -= 2.5;
     opt.range.y -= 5;
     opt.level -= 0.05;
