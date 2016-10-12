@@ -111,14 +111,14 @@ var renderShape = function(){
     ctx.lineTo(-opt.range.x - opt.thickness, ch + opt.thickness);
     ctx.lineTo(cw + opt.range.x + opt.thickness, ch + opt.thickness);
     ctx.closePath();
-    ctx.fillStyle = '#FEBD01';
+    ctx.fillStyle = colorOfOcean;
     ctx.fill();
     ctx.stroke();
 };
 
 var loop = function () {
     colorOfOcean = beerColor;
-    if (opt.level >= 0.08) {
+    if (opt.level >= 0.14) {
         colorOfOcean = redColor;
     }
 
@@ -127,15 +127,16 @@ var loop = function () {
 };
 
 function increaseWaves() {
-    if(opt.level >= 0.09)
+    if(opt.level >= 0.19)
     {
+        opt.level = 0.19;
         return;
     }
 
     let oldLevel = opt.level;
     opt.range.x += 2.5;
     opt.range.y += 5;
-    while (opt.level - oldLevel < 0.05) {
+    while (opt.level - oldLevel < 0.05) { // по-плавно покачване на вълната
         opt.level += 0.01;
 
         points = [];
@@ -143,7 +144,6 @@ function increaseWaves() {
         let i = opt.count + 2;
         let spacing = (cw + (opt.range.x * 2)) / (opt.count - 1);
         while (i--) {
-            console.log('level: ' + opt.level)
             points.push(new Point({
                 x: (spacing * (i - 1)) - opt.range.x,
                 y: ch - (ch * opt.level)
@@ -156,8 +156,9 @@ function increaseWaves() {
 }
 
 function reduceWaves() {
-    if (opt.level == 0)
+    if (opt.level <= 0)
     {
+        opt.level = 0;
         return; // няма смисъл да става отрицателно
     }
 

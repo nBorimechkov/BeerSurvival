@@ -117,16 +117,13 @@ function component(img, x, y, speedX, speedY, crashEffect, hitBottomEffect, draw
     this.draw = draw;
 }
 
-function startTimer(duration, x, y)
+function startTimer()
 {
     setInterval(function () {
         if(lastSecondsOfBreath != undefined)
         {
-            let seconds = parseInt(lastSecondsOfBreath % 60, 10);
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            myGameArea.context.fillStyle = "black";
-            myGameArea.context.fillText(`Остават: ${seconds}`, 500, 25);
+            secondsAsMessage = parseInt(lastSecondsOfBreath % 60, 10);
+            secondsAsMessage = secondsAsMessage < 10 ? "0" + secondsAsMessage : secondsAsMessage;
 
             if (--lastSecondsOfBreath < 0) {
                 gameOver();
