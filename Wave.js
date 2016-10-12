@@ -18,7 +18,7 @@ let c = document.getElementById('canvas'),
         },
         thickness: 10,
         strokeColor: '#444',
-        level: 0.2,
+        level: 0.0,
         curved: true
     },
     rand = function(min, max){
@@ -32,8 +32,6 @@ let c = document.getElementById('canvas'),
 ctx.lineJoin = 'round';
 ctx.lineWidth = opt.thickness;
 ctx.strokeStyle = opt.strokeColor;
-
-
 
 var Point = function(config){
     this.anchorX = config.x;
@@ -114,26 +112,54 @@ var renderShape = function(){
     ctx.stroke();
 };
 
-var loop = function(numberOfBeers){
-    opt.level = numberOfBeers / 10;
-    opt.range.x = numberOfBeers * 5;
-    opt.range.y = numberOfBeers * 10;
-
-    for (var j = 0; j < points.length; j++) {
-        var obj = points[j];
-        obj.y = ch - (ch * opt.level);
-        obj.anchorY = ch - (ch * opt.level);
-        obj.setTarget();
-    }
-
+var loop = function(){
     updatePoints();
     renderShape();
-
-
 };
 
-var i = opt.count + 2;
-var spacing = (cw + (opt.range.x * 2)) / (opt.count-1);
+function increaseWaves() {
+    let oldLevel = opt.level;
+    opt.range.x += 2.5;
+    opt.range.y += 5;
+    while (opt.level - oldLevel < 0.05) {
+        opt.level += 0.01;
+
+        points = [];
+
+        let i = opt.count + 2;
+        let spacing = (cw + (opt.range.x * 2)) / (opt.count - 1);
+        while (i--) {
+            points.push(new Point({
+                x: (spacing * (i - 1)) - opt.range.x,
+                y: ch - (ch * opt.level)
+            }));
+        }
+
+        updatePoints();
+        renderShape();
+    }
+}
+
+function reduceWaves() {
+    opt.range.x -= 2.5;
+    opt.range.y -= 5;
+    opt.level -= 0.05;
+
+    points = [];
+
+    let i = opt.count + 2;
+    let spacing = (cw + (opt.range.x * 2)) / (opt.count - 1);
+    while (i--) {
+        console.log('level: ' + opt.level)
+        points.push(new Point({
+            x: (spacing * (i - 1)) - opt.range.x,
+            y: ch - (ch * opt.level)
+        }));
+    }
+}
+
+let i = opt.count + 2;
+let spacing = (cw + (opt.range.x * 2)) / (opt.count - 1);
 while(i--){
     console.log('level: ' + opt.level)
     points.push(new Point({

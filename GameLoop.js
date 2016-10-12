@@ -12,6 +12,7 @@ window.requestAnimFrame=function(){return window.requestAnimationFrame||window.w
 function startGame() {
     myGamePiece = new component(30, 30, "red", 10, 120);
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    console.log('startGame()')
     myGameArea.start();
 }
 
@@ -30,16 +31,12 @@ var myGameArea = {
     }
 }
 
-let mybeers = [ { img: 'beer1', point: 5, functionHitBottom: function () {
-
-}}, { img: 'beer2', point: 1}]
-
 function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
     return false;
 }
 
-function component(width, height, color, x, y, type, speedX, speedY, functiionUpdate, functionHitBottom) {
+function component(width, height, color, x, y, type, speedX, speedY) {
     this.type = type;
     this.score = 0;
     this.width = width;
@@ -83,15 +80,13 @@ function component(width, height, color, x, y, type, speedX, speedY, functiionUp
     }
 }
 
-var number = 1;
-
 function updateGameArea() {
     var x;
-
+    console.log('updateGameArea')
     for (var i = 0; i < myObstacles.length; i += 1) {
-        if (myGamePiece.crashWith(myObstacles[i])) {
-            return;
-        }
+        //if (myGamePiece.crashWith(myObstacles[i])) {
+        //    return;
+        //}
     }
 
     myGameArea.clear();
@@ -106,7 +101,7 @@ function updateGameArea() {
     myScore.update();
     myGamePiece.newPos();
     myGamePiece.update();
-    loop(number);
+    loop();
 
     window.requestAnimFrame(updateGameArea, this.context);
 }
