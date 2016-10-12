@@ -8,4 +8,5 @@ Basic JavaScript game using HTML5 Canvas
 4. If beer level rises above Homer, he drowns
 5. Homer becomes slower the higher the beer level
 6. Potatoes and peanuts also fall from the sky, if Homer eats some, he can drink some of the beer on the bottom
-7. Maybe other powerups can be included: faster movement, slower beerfall, more food raining.
+7. As Homer catches more beers, they start falling faster, but he also moves slightly faster 
+8. Homer could become slower as beer level increases
