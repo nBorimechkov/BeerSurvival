@@ -1,7 +1,7 @@
 /**
  * Created by Rostislav Kolev on 12-Oct-16.
  */
-let friendlyItemsImages = ['res/steak.png', 'res/fries2.png', 'res/peanut.png'];
+let friendlyItemsImages = ['res/steak.png', 'res/fries2.png', 'res/peanut.jpg'];
 
 let mezeSpeed = 3;
 

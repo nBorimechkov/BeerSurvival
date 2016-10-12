@@ -56,6 +56,9 @@ function updateGameArea() {
        items[i].update();
         items[i].draw();
     }
+	homer.draw();
+	homerUpdate()
+	
     loop();
     if(myGameArea.beersDrunk < 10)
         beerSpeed = 3;      // 1 level
@@ -73,6 +76,11 @@ function updateGameArea() {
         beerSpeed = 7;          // 4 level
         myGameArea.level = 4;
     }
+	else
+	{
+		 beerSpeed = 9;          // 5 level
+        myGameArea.level = 4;
+	}
 
     ctx.fillStyle = "black";
     ctx.fillText(`Total Beers Drunk: ${myGameArea.beersDrunk}`, 15, 25);

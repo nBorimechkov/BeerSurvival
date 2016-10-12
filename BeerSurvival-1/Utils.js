@@ -1,5 +1,7 @@
     function defaultDraw() {
-        myGameArea.context.drawImage(this.img, this.x, this.y);
+		let c = document.getElementById('canvas'),
+			ctx = c.getContext('2d');
+        ctx.drawImage(this.img, this.x, this.y);
     }
 
     function keyboardHandler(event) {
@@ -7,7 +9,7 @@
             if(homer.x > 10) {
                 homer.x -= 15;
             }
-            homer.img = homerGoingLeft;
+            homer.img.src = homerGoingLeft;
             x--;                              // change the x to take different parts of the sprite
             if (x < 0) x = 15;                // x is between 0 and 15
         }
@@ -15,7 +17,7 @@
             if(homer.x < 720) {
                 homer.x += 15;
             }
-            homer.img = homerGoingRight;
+            homer.img.src = homerGoingRight;
             x++;                            // change the x to take different parts of the sprite
             if (x >= 16) x = 0;             // x is between 0 and 15
         }
@@ -40,7 +42,7 @@
         if(myGameArea.foodsInGame < 1)
         {
             let food = Math.floor(Math.random() * 3); // връща 0 или 1. С това ще вземем индекса от масива със снимки на бири
-            items.push(new component(food,
+            items.push(new component(friendlyItemsImages[food],
                 Math.random() * 700,
                 -450,
                 0,

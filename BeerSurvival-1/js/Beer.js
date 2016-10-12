@@ -16,7 +16,7 @@ function beerHitBottomEffect() {
     let beer = Math.round(Math.random()); // връща 0 или 1. С това ще вземем индекса от масива със снимки на бири
     this.img.src = enemyItemsImages[beer]; // сменяме снимката на бирата
     this.x = Math.random() * 750;
-    this.y = -100;
+    this.y = -450;
 }
 
 function beerUpdate() {

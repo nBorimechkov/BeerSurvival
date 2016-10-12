@@ -17,6 +17,4 @@ function homerDraw() {
 function homerUpdate() {
     this.speedX = homerSpeedX;
     this.speedY = homerSpeedY;
-    this.newPos();
-
 }
