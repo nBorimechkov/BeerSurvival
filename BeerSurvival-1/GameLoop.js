@@ -56,6 +56,7 @@ function updateGameArea() {
             }
         }
         myGameArea.clear();
+        myGameArea.context.drawImage(document.getElementById('background'), 0, 0, 800, 600);
 
         generateItem();
         for (let i = 0; i < items.length; i++) {
@@ -100,14 +101,14 @@ function updateGameArea() {
             lastSecondsOfBreath = undefined; // спасил си се
         }
 
-        myGameArea.context.fillStyle = "black";
+        myGameArea.context.fillStyle = "white";
         myGameArea.context.fillText(`Total Beers Drunk: ${myGameArea.beersDrunk}`, 15, 25);
         myGameArea.context.fillText(`Total Beers Dropped: ${myGameArea.beersDropped}`, 15, 45);
         myGameArea.context.fillText(`Level ${myGameArea.level}`, 350, 35);
 
         if (lastSecondsOfBreath != undefined) {
-            myGameArea.context.fillStyle = "black";
-            myGameArea.context.fillText(`Остават: ${secondsAsMessage}`, 500, 25);
+            myGameArea.context.fillStyle = "white";
+            myGameArea.context.fillText(`It rest : ${secondsAsMessage}`, 500, 25);
         }
         window.requestAnimFrame(updateGameArea, myGameArea.context);
     }
@@ -116,7 +117,7 @@ function updateGameArea() {
 function gameOver() {
     myGameArea.gameIsRunning = false;
     myGameArea.context.drawImage(document.getElementById('gameOver'), 0, 0, 800, 600);
-    myGameArea.context.fillStyle = "black";
-    myGameArea.context.font = "30px Arial"
+    myGameArea.context.fillStyle = "white";
+    myGameArea.context.font = "50px Arial"
     myGameArea.context.fillText(`GAME OVER: ${myGameArea.beersDrunk}`, 350, 250);
 }

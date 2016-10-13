@@ -1,7 +1,7 @@
 function defaultDraw() {
     let c = document.getElementById('canvas'),
         ctx = c.getContext('2d');
-    ctx.drawImage(this.img, this.x, this.y, 50, 70);
+    ctx.drawImage(this.img, this.x, this.y, 80, 120);
 }
 
 function removeElementFromArray(element) {
