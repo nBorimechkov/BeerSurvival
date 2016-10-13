@@ -5,7 +5,7 @@
 let homer;
 let items = [];
 let lastSecondsOfBreath = undefined;
-let secondsAsMessage;
+let secondsAsMessage = 10;
 
 window.requestAnimFrame = function () { return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (a) { window.setTimeout(a, 1E3 / 60) } }();
 
@@ -100,15 +100,15 @@ function updateGameArea() {
         else {
             lastSecondsOfBreath = undefined; // спасил си се
         }
-
-        myGameArea.context.fillStyle = "white";
-        myGameArea.context.fillText(`Total Beers Drunk: ${myGameArea.beersDrunk}`, 15, 25);
-        myGameArea.context.fillText(`Total Beers Dropped: ${myGameArea.beersDropped}`, 15, 45);
-        myGameArea.context.fillText(`Level ${myGameArea.level}`, 350, 35);
+        myGameArea.context.font = "30px Arial bold";
+        myGameArea.context.fillStyle = "#ffff1a";
+        myGameArea.context.fillText(`Total Beers Drunk: ${myGameArea.beersDrunk}`, 15, 45);
+        myGameArea.context.fillText(`Total Beers Dropped: ${myGameArea.beersDropped}`, 485, 45);
+        myGameArea.context.fillText(`Level ${myGameArea.level}`, 350, 45);
 
         if (lastSecondsOfBreath != undefined) {
-            myGameArea.context.fillStyle = "white";
-            myGameArea.context.fillText(`It rest : ${secondsAsMessage}`, 500, 25);
+            myGameArea.context.fillStyle = "red";
+            myGameArea.context.fillText(`It rest : ${secondsAsMessage}`, 350, 200);
         }
         window.requestAnimFrame(updateGameArea, myGameArea.context);
     }
@@ -119,5 +119,11 @@ function gameOver() {
     myGameArea.context.drawImage(document.getElementById('gameOver'), 0, 0, 800, 600);
     myGameArea.context.fillStyle = "white";
     myGameArea.context.font = "50px Arial"
-    myGameArea.context.fillText(`GAME OVER: ${myGameArea.beersDrunk}`, 350, 250);
+    myGameArea.context.fillText(`GAME OVER`, 240, 250);
+
+    if(myGameArea.beersDrunk <= 1){
+        myGameArea.context.fillText(`DRUNK ${myGameArea.beersDrunk} BEER`, 200, 300);
+    }
+    else
+    myGameArea.context.fillText(`DRUNK ${myGameArea.beersDrunk} BEERS`, 200, 300);
 }
