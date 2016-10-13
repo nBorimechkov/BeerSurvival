@@ -42,8 +42,8 @@ var Point = function(config){
 };
 
 let colorOfOcean;
-let beerColor = '#FEBD01';
-let redColor = '#ed0707';
+let beerColor = 'rgba(254, 189, 1, 0.6)';
+let redColor = 'rgba(237, 7, 7, 0.6';
 
 Point.prototype.setTarget = function(){
     this.initialX = this.x;

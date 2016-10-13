@@ -46,7 +46,7 @@ function generateItem() {
         let beer = Math.round(Math.random()); // връща 0 или 1. С това ще вземем индекса от масива със снимки на бири
         items.push(
             new component(document.getElementById(enemyItemsImages[beer]),
-                Math.random() * 700, -450,
+                Math.random() * 700, - 450,
                 0,
                 beerSpeed,
                 beerCrashEffect,
@@ -59,7 +59,7 @@ function generateItem() {
     }
 
     if (myGameArea.foodsInGame < 1) {
-        let food = Math.floor(Math.random() * 3); // връща 0 или 1. С това ще вземем индекса от масива със снимки на бири
+        let food = Math.floor(Math.random() * 3); // връща 0 или 1. С това ще вземем индекса от масива със снимки на мезета
         items.push(new component(document.getElementById(friendlyItemsImages[food]),
             Math.random() * 700,
             0,
@@ -87,13 +87,13 @@ function component(img, x, y, speedX, speedY, crashEffect, hitBottomEffect, draw
         this.y += this.speedY;
         if (this.hitBottom != undefined)
             this.hitBottom();
-    }
+    };
     this.hitBottom = function () {
-        var rockbottom = myGameArea.canvas.height - this.img.height;
+        var rockbottom = myGameArea.canvas.height - this.img.height + 50;
         if (this.y > rockbottom) {
             this.hitBottomEffect();
         }
-    }
+    };
     this.crashWith = function (otherobj) {
         let myleft = this.x;
         let myright = this.x + (this.img.width);
@@ -105,13 +105,13 @@ function component(img, x, y, speedX, speedY, crashEffect, hitBottomEffect, draw
         let otherbottom = otherobj.y + (otherobj.img.height);
         let crash = false;
         
-        if (myright > otherleft && myleft < otherleft && otherbottom > mytop)
+        if (myright > otherleft + 30 && myleft < otherright + 30 && otherbottom + 30 > mytop)
         {
             crash = true;
         }
 
         return crash;
-    }
+    };
     this.crashEffect = crashEffect; // функция да дали ще намалява или увеличава вълната.
     this.hitBottomEffect = hitBottomEffect;
     this.draw = draw;
